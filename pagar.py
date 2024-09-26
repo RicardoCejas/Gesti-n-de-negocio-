@@ -33,7 +33,6 @@ Entonces el sistema debe proceder con la compra y mostrar una confirmación.
 
 from abc import ABC, abstractmethod
 
-# Clase abstracta base para los métodos de pago
 class MetodoDePago(ABC):
     @abstractmethod
     def procesar_pago(self, monto):
@@ -90,40 +89,46 @@ def seleccionar_metodo_pago():
     print("2. Crédito")
     print("3. Transferencia")
     print("4. Efectivo")
+    print("5. Salir")
     
     opcion = input("Ingrese el número de la opción: ")
     return opcion
 
 # Función para procesar los pagos
 def realizar_pago():
-    opcion = seleccionar_metodo_pago()
+    while True:
+        opcion = seleccionar_metodo_pago()
 
-    monto = float(input("Ingrese el monto a pagar: "))
+        if opcion == '5':
+            print("Saliendo del sistema.")
+            break  # Salir del ciclo y terminar el programa
 
-    if opcion == '1':  # Débito
-        numero_tarjeta = input("Ingrese el número de la tarjeta de débito: ")
-        saldo = float(input("Ingrese el saldo disponible: "))
-        metodo_pago = Debito(numero_tarjeta, saldo)
-        metodo_pago.procesar_pago(monto)
+        monto = float(input("Ingrese el monto a pagar: "))
 
-    elif opcion == '2':  # Crédito
-        numero_tarjeta = input("Ingrese el número de la tarjeta de crédito: ")
-        limite_credito = float(input("Ingrese el límite de crédito disponible: "))
-        metodo_pago = Credito(numero_tarjeta, limite_credito)
-        metodo_pago.procesar_pago(monto)
+        if opcion == '1':  # Débito
+            numero_tarjeta = input("Ingrese el número de la tarjeta de débito: ")
+            saldo = float(input("Ingrese el saldo disponible: "))
+            metodo_pago = Debito(numero_tarjeta, saldo)
+            metodo_pago.procesar_pago(monto)
 
-    elif opcion == '3':  # Transferencia
-        numero_cuenta = input("Ingrese el número de la cuenta bancaria: ")
-        saldo = float(input("Ingrese el saldo disponible en la cuenta: "))
-        metodo_pago = Transferencia(numero_cuenta, saldo)
-        metodo_pago.procesar_pago(monto)
+        elif opcion == '2':  # Crédito
+            numero_tarjeta = input("Ingrese el número de la tarjeta de crédito: ")
+            limite_credito = float(input("Ingrese el límite de crédito disponible: "))
+            metodo_pago = Credito(numero_tarjeta, limite_credito)
+            metodo_pago.procesar_pago(monto)
 
-    elif opcion == '4':  # Efectivo
-        metodo_pago = Efectivo()
-        metodo_pago.procesar_pago(monto)
+        elif opcion == '3':  # Transferencia
+            numero_cuenta = input("Ingrese el número de la cuenta bancaria: ")
+            saldo = float(input("Ingrese el saldo disponible en la cuenta: "))
+            metodo_pago = Transferencia(numero_cuenta, saldo)
+            metodo_pago.procesar_pago(monto)
 
-    else:
-        print("Opción no válida, intente nuevamente.")
+        elif opcion == '4':  # Efectivo
+            metodo_pago = Efectivo()
+            metodo_pago.procesar_pago(monto)
+
+        else:
+            print("Opción no válida, intente nuevamente.")
 
 # Ejecutar el programa
 if __name__ == "__main__":
