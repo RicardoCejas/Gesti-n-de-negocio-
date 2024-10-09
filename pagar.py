@@ -32,55 +32,16 @@ Entonces el sistema debe proceder con la compra y mostrar una confirmación.
 """
 
 from abc import ABC, abstractmethod
+from debito import Debito
+from credito import Credito
+from tranferencia import Transferencia
+from efectivo import Efectivo
+
 
 class MetodoDePago(ABC):
     @abstractmethod
     def procesar_pago(self, monto):
         pass
-
-# Clase para pagos con Débito
-class Debito(MetodoDePago):
-    def __init__(self, numero_tarjeta, saldo):
-        self.numero_tarjeta = numero_tarjeta
-        self.saldo = saldo
-
-    def procesar_pago(self, monto):
-        if self.saldo >= monto:
-            self.saldo -= monto
-            print(f"Pago de {monto} procesado con Débito. Saldo restante: {self.saldo}")
-        else:
-            print("Saldo insuficiente para procesar el pago con Débito.")
-
-# Clase para pagos con Crédito
-class Credito(MetodoDePago):
-    def __init__(self, numero_tarjeta, limite_credito):
-        self.numero_tarjeta = numero_tarjeta
-        self.limite_credito = limite_credito
-
-    def procesar_pago(self, monto):
-        if self.limite_credito >= monto:
-            self.limite_credito -= monto
-            print(f"Pago de {monto} procesado con Crédito. Crédito restante: {self.limite_credito}")
-        else:
-            print("Límite de crédito insuficiente para procesar el pago.")
-
-# Clase para pagos con Transferencia
-class Transferencia(MetodoDePago):
-    def __init__(self, numero_cuenta, saldo):
-        self.numero_cuenta = numero_cuenta
-        self.saldo = saldo
-
-    def procesar_pago(self, monto):
-        if self.saldo >= monto:
-            self.saldo -= monto
-            print(f"Pago de {monto} procesado con Transferencia. Saldo restante: {self.saldo}")
-        else:
-            print("Saldo insuficiente para procesar el pago con Transferencia.")
-
-# Clase para pagos con Efectivo
-class Efectivo(MetodoDePago):
-    def procesar_pago(self, monto):
-        print(f"Pago de {monto} procesado con Efectivo.")
 
 # Función para seleccionar el método de pago
 def seleccionar_metodo_pago():
