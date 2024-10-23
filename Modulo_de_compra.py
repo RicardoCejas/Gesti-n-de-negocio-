@@ -1,1 +1,0 @@
-print("hola compra 1")
