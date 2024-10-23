@@ -1,4 +1,5 @@
 # Clase Producto
+from stock import Stock
 class Producto:
     def __init__(self, nombre, precio, cantidad):
         self.nombre = nombre
@@ -30,7 +31,7 @@ class Tienda:
                 producto.mostrar_informacion()
 
 # Función principal
-def menu():
+def menu(stock : Stock):
     tienda = Tienda()
 
     while True:
