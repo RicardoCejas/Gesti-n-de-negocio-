@@ -1,3 +1,6 @@
+from pagar import MetodoDePago
+
+
 # Clase para pagos con Crédito
 class Credito(MetodoDePago):
     def __init__(self, numero_tarjeta, limite_credito):

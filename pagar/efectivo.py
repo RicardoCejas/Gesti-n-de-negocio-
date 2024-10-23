@@ -1,3 +1,6 @@
+from pagar import MetodoDePago
+
+
 # Clase para pagos con Efectivo
 class Efectivo(MetodoDePago):
     def procesar_pago(self, monto):

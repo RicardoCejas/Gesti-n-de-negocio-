@@ -1,3 +1,6 @@
+from pagar import MetodoDePago
+
+
 # Clase para pagos con Transferencia
 class Transferencia(MetodoDePago):
     def __init__(self, numero_cuenta, saldo):

@@ -1,5 +1,5 @@
 from behave import given, when, then
-from payment_system import PaymentSystem  # Importa tu clase PaymentSystem
+from ignore.payment_system import PaymentSystem  # Importa tu clase PaymentSystem
 
 # Inicializamos el sistema de pago
 @given('the buyer is at the checkout page')
