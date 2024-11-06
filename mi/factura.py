@@ -1,3 +1,0 @@
-# Creando factura
-
-print("factura")
